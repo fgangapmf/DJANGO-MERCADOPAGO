@@ -1,0 +1,9 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+<div class="alert alert-warning">
+    <h2>Pago Pendiente</h2>
+    <p>Tu pago para la orden #{{ order.id }} está pendiente de confirmación.</p>
+    <a href="{% url 'store:product_list' %}" class="btn btn-primary">Volver a la tienda</a>
+</div>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+<div class="alert alert-danger">
+    <h2>Error en el Pago</h2>
+    <p>Hubo un problema al procesar tu pago para la orden #{{ order.id }}.</p>
+    <a href="{% url 'store:product_list' %}" class="btn btn-primary">Volver a intentar</a>
+</div>
+{% endblock %}

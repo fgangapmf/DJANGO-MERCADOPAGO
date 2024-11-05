@@ -1,0 +1,40 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Confirmar Compra</h3>
+                </div>
+                <div class="card-body">
+                    <h5>{{ product.name }}</h5>
+                    <p>{{ product.description }}</p>
+                    <p class="font-weight-bold">Precio: $ {{ product.price }} CLP</p>
+                    
+                    <!-- Contenedor para el botón de pago -->
+                    <div id="wallet_container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SDK MercadoPago.js V2 -->
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+
+<script>
+    // Configura tu Public Key
+    const mp = new MercadoPago('{{ public_key }}', {
+        locale: 'es-CL'
+    });
+    
+    // Inicializa el checkout
+    mp.bricks().create("wallet", "wallet_container", {
+        initialization: {
+            preferenceId: "{{ preference_id }}"
+        }
+    });
+</script>
+{% endblock %}
